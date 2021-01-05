@@ -1,0 +1,11 @@
+Package: com.ikilledappl3.addilynne
+Name: Addilynne
+Depends: mobilesubstrate, preferenceloader, firmware (>=12.0), com.nito.screencapture
+Architecture: appletvos-arm64
+Description: Double click the menu button to take a screenshot.
+Depiction: https://toxicappl3inc.github.io/tvrepo/depictions/Addilynne/Addilynne.json
+Maintainer: iKilledAppl3 <ipodnewbee234@icloud.com>
+Author: iKilledAppl3 <ipodnewbee234@icloud.com>
+Section: Tweaks
+Version: 1.0-1
+Installed-Size: 240

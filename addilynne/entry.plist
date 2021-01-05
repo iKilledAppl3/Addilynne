@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>entry</key>
+	<dict>
+		<key>bundle</key>
+		<string>Addilynne</string>
+		<key>cell</key>
+		<string>PSLinkCell</string>
+		<key>detail</key>
+		<string>AddilynneListController</string>
+		<key>icon</key>
+		<string>Addilynne.png</string>
+		<key>isController</key>
+		<integer>1</integer>
+		<key>label</key>
+		<string>Addilynne</string>
+		<key>description</key>
+		<string>&quot;Fear thou not; for I am with thee: be not dismayed; for I am thy God: I will strengthen thee; yea, I will help thee; yea, I will uphold thee with the right hand of my righteousness.&quot; - Isaiah 41:10 (KJV)</string>
+	</dict>
+</dict>
+</plist>
