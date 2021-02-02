@@ -2,9 +2,13 @@
 @import UIKit;
 @import AVFoundation;
 @import AudioToolbox;
+#import <objc/runtime.h>
 
 // Enables the tweak
 BOOL kEnabled;
+
+// show the image view or not
+BOOL kShowScreenshotPreview;
 
 // the PLIST path where all user settings are stored.
 #define PLIST_PATH @"/var/mobile/Library/Preferences/com.ikilledappl3.addilynne.plist"
@@ -17,6 +21,12 @@ NSString *screenshotSoundFile = [[NSBundle bundleWithPath:@"/System/Library/Audi
 
 // set the sound ID
 SystemSoundID screenshotSound;
+
+// show the screenshot image 
+extern "C" UIImage* _UICreateScreenUIImage();
+
+ UIImageView *screenshotImageView;
+ UIWindow *mainAppRootWindow;
 
 // interfaces 
 @interface NSTask : NSObject

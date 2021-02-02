@@ -3,6 +3,8 @@
 // statically call the item
 TSKSettingItem *kEnabled;
 
+TSKSettingItem *kShowScreenshotPreview;
+
 // How to use
 TSKSettingItem *kHowToUse;
 
@@ -16,7 +18,6 @@ TSKSettingItem *kRespringButton;
 @interface AddilynneListController : TSKViewController
 @property (nonatomic, strong) UIBlurEffect *respringBlur;
 @property (nonatomic, strong) UIVisualEffectView *respringEffectView;
-@property (nonatomic, strong) UIWindow *mainAppRootWindow;
 @end
 
 

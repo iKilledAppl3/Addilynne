@@ -1,4 +1,4 @@
-/Users/ikilledappl3/tweaks/tvostweaks/addilynne/.theos/obj/appletv/arm64/AddilynneListController.mm.1d76166d.o: \
+/Users/ikilledappl3/tweaks/tvOSTweaks/addilynne/.theos/obj/appletv/arm64/AddilynneListController.mm.7a950c4c.o: \
   AddilynneListController.mm /Users/ikilledappl3/theos/Prefix.pch \
   /Users/ikilledappl3/theos/vendor/include/_Prefix/BackwardsCompat.h \
   /Users/ikilledappl3/theos/vendor/include/HBLog.h \

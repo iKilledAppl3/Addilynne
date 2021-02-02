@@ -21,6 +21,9 @@ inline NSString *GetPrefVal(NSString *key){
     // to add more settings add them like so...
     kEnabled = [TSKSettingItem toggleItemWithTitle:@"Enable Tweak" description:@"This screenshot tweak has superpowers!" representedObject:facade keyPath:@"kEnabled" onTitle:@"Enabled" offTitle:@"Disabled"];
     
+     // to add more settings add them like so...
+    kShowScreenshotPreview = [TSKSettingItem toggleItemWithTitle:@"Screenshot Preview" description:@"Shows a preview of the screenshot before AirDropping it." representedObject:facade keyPath:@"kShowScreenshotPreview" onTitle:@"Enabled" offTitle:@"Disabled"];
+    
         // Respring Button here baby!
     kHowToUse = [TSKSettingItem actionItemWithTitle:@"How to Use" description:@"I knew nothing could come good from these city folk and their new fangaled screenshot thingy." representedObject:facade keyPath:PLIST_PATH target:self action:@selector(showMeHowToUse)];
     
@@ -29,7 +32,7 @@ inline NSString *GetPrefVal(NSString *key){
     
     
     // you add your settings to a group basically an NSArray so the Settings app can see them.
-    TSKSettingGroup *group = [TSKSettingGroup groupWithTitle:@"Enable Tweak" settingItems:@[kEnabled]];
+    TSKSettingGroup *group = [TSKSettingGroup groupWithTitle:@"Tweak Options" settingItems:@[kEnabled, kShowScreenshotPreview]];
     TSKSettingGroup *group2 = [TSKSettingGroup groupWithTitle:@"How To Use" settingItems:@[kHowToUse]];
     TSKSettingGroup *group3 = [TSKSettingGroup groupWithTitle:@"Apply Changes" settingItems:@[kRespringButton]];
     
@@ -51,7 +54,7 @@ UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewContr
 
 //then call ther alert controller
 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Tutorial"
-                               message:@"It's dangerous to go alone take this! \n Double tap the menu button on the Siri Remote to take a screenshot. \n that is all! \n What were you expecting a list? C'mon I don't have all day!"
+                               message:@"It's dangerous to go alone take this! \n Double tap the menu button on the Siri Remote to take a screenshot. \n That is all! \n What were you expecting a list? C'mon I don't have all day!"
                                preferredStyle:UIAlertControllerStyleAlert];
  
 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -63,16 +66,17 @@ UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActi
 
 // Let's blur the screen before we kill backboardd >:)
 -(void)doAFancyRespring {
-    self.mainAppRootWindow = [UIApplication sharedApplication].keyWindow;
     self.respringBlur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     self.respringEffectView = [[UIVisualEffectView alloc] initWithEffect:self.respringBlur];
-    self.respringEffectView.frame = [[UIScreen mainScreen] bounds];
-    [self.mainAppRootWindow addSubview:self.respringEffectView];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:5.0];
-    [self.respringEffectView setAlpha:0];
-    [UIView commitAnimations];
-    [self performSelector:@selector(respring) withObject:nil afterDelay:3.0];
+    self.respringEffectView.frame = self.view.frame;
+    [self.respringEffectView setAlpha:0.0];
+    [[self view] addSubview:self.respringEffectView];
+
+     [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [self.respringEffectView setAlpha:1.0];
+    } completion:^(BOOL finished) {
+        [self respring];
+    }];
     
 }
 
@@ -97,24 +101,7 @@ UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActi
     testObject.headerText = @"Addilynne";
     testObject.initialText = [[self ourPreferences] stringForKey:item.keyPath];
     
-    if ([testObject respondsToSelector:@selector(setEditingDelegate:)]){
-        [testObject setEditingDelegate:self];
-    }
-    [testObject setEditingItem:item];
     [self.navigationController pushViewController:testObject animated:TRUE];
-}
-
-- (void)editingController:(id)arg1 didCancelForSettingItem:(TSKSettingItem *)arg2 {
-    [super editingController:arg1 didCancelForSettingItem:arg2];
-}
-- (void)editingController:(id)arg1 didProvideValue:(id)arg2 forSettingItem:(TSKSettingItem *)arg3 {
-    [super editingController:arg1 didProvideValue:arg2 forSettingItem:arg3];
-    
-    TVSPreferences *prefs = [TVSPreferences preferencesWithDomain:@"com.ikilledappl3.addilynne"];
-    
-    [prefs setObject:arg2 forKey:arg3.keyPath];
-    [prefs synchronize];
-    
 }
 
 

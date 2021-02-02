@@ -7,7 +7,7 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = Addilynne
 Addilynne_FILES = Tweak.xm
-Addilynne_FRAMEWORKS = UIKit CoreGraphics QuartzCore AVFoundation AudioToolbox
+Addilynne_FRAMEWORKS = UIKit CoreGraphics QuartzCore AVFoundation AudioToolbox ImageIO
 Addilynne_LIBRARIES = substrate
 
 
